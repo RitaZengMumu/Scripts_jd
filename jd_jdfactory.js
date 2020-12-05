@@ -87,7 +87,7 @@ const inviteCodes = [`P04z54XCjVWnYaS5u2ak7ZCdan1Bdd2GGiWvC6_uERj`, 'P04z54XCjVW
     })
 async function jdFactory() {
   await jdfactory_getHomeData();
-  await helpFriends();
+  //await helpFriends();
   // $.newUser !==1 && $.haveProduct === 2，老用户但未选购商品
   // $.newUser === 1新用户
   if ($.newUser === 1) return
@@ -231,6 +231,7 @@ async function algorithm() {
     })
   })
 }
+/*
 async function helpFriends() {
   for (let code of $.newShareCodes) {
     if (!code) continue
@@ -241,6 +242,7 @@ async function helpFriends() {
     }
   }
 }
+*/
 async function doTask() {
   for (let item of $.taskVos) {
     if (item.taskType === 1) {
