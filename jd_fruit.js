@@ -88,7 +88,7 @@ async function jdFruit() {
     console.log(`\n【您的互助码shareCode】 ${$.farmInfo.farmUserPro.shareCode}\n`);
     console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
     message += `【已兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`;
-    await masterHelpShare();//助力好友
+    //await masterHelpShare();//助力好友
     if ($.farmInfo.treeState === 2 || $.farmInfo.treeState === 3) {
       option['open-url'] = urlSchema;
       $.msg($.name, ``, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP或微信小程序查看\n点击弹窗即达`, option);
@@ -1044,7 +1044,6 @@ async function inviteFriend() {
   });
 }
 // 助力好友API
-/*
 async function masterHelp() {
   $.helpResult = await request(`initForFarm`, {
     imageUrl: "",
@@ -1055,7 +1054,7 @@ async function masterHelp() {
     channel: 1
   });
 }
-*/
+
 /**
  * 水滴雨API
  */
