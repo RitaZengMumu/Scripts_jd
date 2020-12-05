@@ -36,7 +36,7 @@ let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
 let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
-let jdFruitBeanCard = false;//农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
+let jdFruitBeanCard = true;//农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
 let randomCount = $.isNode() ? 20 : 5;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://h5.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html%22%20%7D`;
@@ -607,6 +607,7 @@ async function getExtraAward() {
   }
 }
 //助力好友
+/*
 async function masterHelpShare() {
   console.log('开始助力好友')
   let salveHelpAddWater = 0;
@@ -674,6 +675,7 @@ async function masterHelpShare() {
   message += `【今日剩余助力👬】${remainTimes}次\n`;
   console.log('助力好友结束，即将开始领取额外水滴奖励\n');
 }
+*/
 //水滴雨
 async function executeWaterRains() {
   let executeWaterRain = !$.farmTask.waterRainInit.f;
@@ -1042,6 +1044,7 @@ async function inviteFriend() {
   });
 }
 // 助力好友API
+/*
 async function masterHelp() {
   $.helpResult = await request(`initForFarm`, {
     imageUrl: "",
@@ -1052,6 +1055,7 @@ async function masterHelp() {
     channel: 1
   });
 }
+*/
 /**
  * 水滴雨API
  */
