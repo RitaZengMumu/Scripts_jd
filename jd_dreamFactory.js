@@ -87,7 +87,7 @@ if ($.isNode()) {
 async function jdDreamFactory() {
   await userInfo();
   // await JoinTuan();参团功能暂时无效，
-  await helpFriends();
+  //await helpFriends();
   if (!$.unActive) return
   await getUserElectricity();
   await taskList();
@@ -326,6 +326,7 @@ function hireAward() {
     })
   })
 }
+/*
 async function helpFriends() {
   for (let code of $.newShareCodes) {
     if (code) {
@@ -353,7 +354,7 @@ function assistFriend(sharepin) {
     const options = {
       'url': `https://m.jingxi.com/dreamfactory/friend/AssistFriend?zone=dream_factory&sharepin=${escape(sharepin)}&sceneval=2&g_login_type=1`,
       'headers': {
-        "Accept": "*/*",
+        "Accept": "/*",
         "Accept-Encoding": "gzip, deflate, br",
         "Accept-Language": "zh-cn",
         "Connection": "keep-alive",
@@ -362,7 +363,7 @@ function assistFriend(sharepin) {
         "Referer": "https://st.jingxi.com/pingou/dream_factory/index.html",
         "User-Agent": "jdpingou;iPhone;3.15.2;14.2;f803928b71d2fcd51c7eae549f7bc3062d17f63f;network/4g;model/iPhone11,8;appBuild/100365;ADID/0E38E9F1-4B4C-40A4-A479-DD15E58A5623;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/2;pap/JA2015_311210;brand/apple;supportJDSHWK/1;"
       }
-    }
+    } 
     $.get(options, (err, resp, data) => {
       try {
         if (err) {
@@ -386,7 +387,7 @@ function assistFriend(sharepin) {
     })
   })
 }
-
+*/
 // 任务领奖
 function completeTask(taskId, taskName) {
   return new Promise(async resolve => {
