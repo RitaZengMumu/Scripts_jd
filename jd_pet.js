@@ -124,7 +124,7 @@ async function jdPet() {
     $.taskInfo = $.taskInit.result;
 
     await petSport();//遛弯
-    await slaveHelp();//助力好友
+    //await slaveHelp();//助力好友
     await masterHelpInit();//获取助力的信息
     await doTask();//做日常任务
     await feedPetsAgain();//再次投食
@@ -262,6 +262,7 @@ async function masterHelpInit() {
  * shareCode为你要助力的好友的
  * 运行脚本时你自己的shareCode会在控制台输出, 可以将其分享给他人
  */
+ /*
 async function slaveHelp() {
   let helpPeoples = '';
   for (let code of newShareCodes) {
@@ -290,6 +291,7 @@ async function slaveHelp() {
     message += `【您助力的好友】${helpPeoples.substr(0, helpPeoples.length - 1)}\n`;
   }
 }
+*/
 // 遛狗, 每天次数上限10次, 随机给狗粮, 每次遛狗结束需调用getSportReward领取奖励, 才能进行下一次遛狗
 async function petSport() {
   console.log('开始遛弯');

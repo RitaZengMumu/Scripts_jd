@@ -99,7 +99,7 @@ async function jdPlantBean() {
     message += `【上期时间】${roundList[0].dateDesc}\n`;
     message += `【上期成长值】${roundList[0].growth}\n`;
     await receiveNutrients();//定时领取营养液
-    await doHelp();//助力
+    //await doHelp();//助力
     await doTask();//做日常任务
     await doEgg();
     await stealFriendWater();
@@ -359,6 +359,7 @@ function showTaskProcess() {
   })
 }
 //助力好友
+/*
 async function doHelp() {
   for (let plantUuid of newShareCodes) {
     console.log(`开始助力京东账号${$.index} - ${$.nickName}的好友: ${plantUuid}`);
@@ -391,6 +392,7 @@ async function doHelp() {
     }
   }
 }
+*/
 function showMsg() {
   $.log(`\n${message}\n`);
   jdNotify = $.getdata('jdPlantBeanNotify') ? $.getdata('jdPlantBeanNotify') : jdNotify;
