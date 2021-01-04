@@ -6,7 +6,7 @@ name: jd_unbind
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 15 * * 1,4' #每周1/4 北京时间23点0分运行，action会有延迟
+    - cron: '0 15 8 * *' #每月8号 北京时间23点0分运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
