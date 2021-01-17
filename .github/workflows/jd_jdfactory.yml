@@ -6,7 +6,7 @@ name: jd_jdfactory
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 22 * * *' #北京时间0点运行，action会有延迟
+    - cron: '5 */1 * * *' #北京时间0点运行，action会有延迟 */20 */1 * * *
   watch:
     types: started
   repository_dispatch:
