@@ -6,7 +6,7 @@ name: jd_jdzz
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 17 * * *' #北京时间1点05分运行，action会有延迟
+    - cron: '5 14 * * *' #北京时间22点05分运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
