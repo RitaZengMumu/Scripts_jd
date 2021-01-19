@@ -441,7 +441,6 @@ function submitInviteId(userName) {
     });
 }
 
-
 function getAssistUser() {
     return new Promise(resolve => {
         try {
@@ -469,7 +468,6 @@ function getAssistUser() {
 }
 
 // 为好友助力 return true 继续助力  false 助力结束
-/*
 async function helpFriends() {
     for (let code of currentShareCode) {
         if (!code) {
@@ -523,7 +521,7 @@ function helpShareCode(code) {
         );
     });
 }
-*/
+
 
 function doTask({tasklevel, left, taskname, eachtimeget}) {
     return new Promise(async resolve => {
