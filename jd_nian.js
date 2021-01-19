@@ -17,7 +17,7 @@ cron "0 8 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_script
 
 ===============Surge=================
 京东炸年兽🧨 = type=cron,cronexp="0 8 * * *",wake-system=1,timeout=200,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js
- 
+
 ============小火箭=========
 京东炸年兽🧨 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nian.js, cronexpr="0 8 * * *", timeout=200, enable=true
  */
@@ -45,8 +45,9 @@ if ($.isNode()) {
   cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = []
-  
+const inviteCodes = [
+  `cgxZaDXWZPCmiUa2akPVmFMI27K6antJzucULQPYNim_BPEW1Dwd@cgxZdTXtIrPYuAqfDgSpusxr97nagU6hwFa3TXxnqM95u3ib-xt4nWqZdz8@cgxZdTXtIO-O6QmYDVf67KCEJ19JcybuMB2_hYu8NSNQg0oS2Z_FpMce45g@cgxZdTXtILiLvg7OAASp61meehou4OeZvqbjghsZlc3rI5SBk7b3InUqSQ0@cgxZ9_MZ8gByP7FZ368dN8oTZBwGieaH5HvtnvXuK1Epn_KK8yol8OYGw7h3M2j_PxSZvYA`,
+  `cgxZaDXWZPCmiUa2akPVmFMI27K6antJzucULQPYNim_BPEW1Dwd@cgxZdTXtIrPYuAqfDgSpusxr97nagU6hwFa3TXxnqM95u3ib-xt4nWqZdz8@cgxZdTXtIO-O6QmYDVf67KCEJ19JcybuMB2_hYu8NSNQg0oS2Z_FpMce45g@cgxZdTXtILiLvg7OAASp61meehou4OeZvqbjghsZlc3rI5SBk7b3InUqSQ0@cgxZdTXtIumO4w2cDgSqvYcqHwjaAzLxu0S371Dh_fctFJtN0tXYzdR7JaY`
 ];
 !(async () => {
   await requireConfig();
@@ -91,7 +92,7 @@ async function jdNian() {
   await getTaskList()
   await $.wait(1000)
   await doTask()
-  await helpFriends()
+ // await helpFriends()
   await getHomeData(true)
   await showMsg()
 }
@@ -120,6 +121,7 @@ function showMsg() {
     resolve()
   })
 }
+/*
 async function helpFriends() {
   for (let code of $.newShareCodes) {
     if (!code) continue
@@ -127,6 +129,7 @@ async function helpFriends() {
     await $.wait(1000)
   }
 }
+*/
 async function doTask() {
   for (let item of $.taskVos) {
     if (item.taskType === 14) {
@@ -468,6 +471,7 @@ function getTaskList(body={}) {
     })
   })
 }
+/*
 function getFriendData(inviteId) {
   return new Promise((resolve) => {
     $.post(taskPostUrl('nian_getHomeData',{"inviteId":inviteId}), async (err, resp, data) => {
@@ -490,6 +494,7 @@ function getFriendData(inviteId) {
     })
   })
 }
+*/
 function map() {
   return new Promise(resolve => {
     $.post(taskPostUrl("nian_myMap", {}, "nian_myMap"), async (err, resp, data) => {
@@ -795,7 +800,6 @@ function pkAssignGroup(inviteId) {
     })
   })
 }
-/*
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
@@ -840,7 +844,6 @@ function shareCodesFormat() {
     resolve();
   })
 }
-*/
 function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
@@ -865,7 +868,7 @@ function requireConfig() {
     console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
     resolve()
   })
-
+}
 
 function taskPostUrl(function_id, body = {}, function_id2) {
   let url = `${JD_API_HOST}`;
