@@ -350,7 +350,7 @@ function getGoodPrize(id) {
         resolve();
       }
     })
-  })
+  }) 
 }
 function getShopList() {
   return new Promise((resolve) => {
