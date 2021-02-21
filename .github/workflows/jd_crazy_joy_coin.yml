@@ -6,7 +6,7 @@ name: jd_crazy_joy_coin
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 23 * * *' #北京时间7点0分运行，action会有延迟
+    - cron: '0 0,6,12,18 * * *' #北京时间7点0分运行，action会有延迟
   watch:
     types: started
   repository_dispatch:
