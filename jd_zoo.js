@@ -108,10 +108,11 @@ if ($.isNode()) {
     $.index = i + 1;
     //console.log($.inviteList);
     //pk助力
+	/*
     if (new Date().getHours() >= 1) {
       console.log(`\n******开始内部京东账号【怪兽大作战pk】助力*********\n`);
       for (let i = 0; i < $.pkInviteList.length && pKHelpFlag && $.canHelp; i++) {
-        console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`); 
+        console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`);
         $.pkInviteId = $.pkInviteList[i];
         console.log($.pkInviteList);
         await takePostRequest('pkHelp');
@@ -119,6 +120,7 @@ if ($.isNode()) {
       }
       $.canHelp = true;
     }
+	*/
     if ($.inviteList && $.inviteList.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList.length && $.canHelp; j++) {
       $.oneInviteInfo = $.inviteList[j];
@@ -207,7 +209,7 @@ async function zoo() {
             await $.wait(3000);
           }
         }
-      }else if ($.oneTask.taskType === 2 && $.oneTask.status === 1){
+      }else if ($.oneTask.taskType === 50 && $.oneTask.status === 1){
         console.log(`做任务：${$.oneTask.taskName};等待完成 (实际不会添加到购物车)`);
         $.taskId = $.oneTask.taskId;
         $.feedDetailInfo = {};
