@@ -27,7 +27,7 @@ const $ = new Env('618动物联萌');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const pKHelpFlag = true;//是否PK助力  true 助力，false 不助力
-const pKHelpAuthorFlag = false;//是否助力作者PK  true 助力，false 不助力
+const pKHelpAuthorFlag = true;//是否助力作者PK  true 助力，false 不助力
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
@@ -86,12 +86,12 @@ if ($.isNode()) {
       if($.hotFlag)$.secretpInfo[$.UserName] = false;//火爆账号不执行助力
     }
   }
-  let res = ['bbb',], res2 = ['ccc',], res3 = ['ddd',];
-  //res3 = await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json');
-  //if (!res3) await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json')
+  let res = [], res2 = [], res3 = [];
+  res3 = await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json');
+  if (!res3) await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json')
   if (new Date().getUTCHours() + 8 >= 9) {
     res = await getAuthorShareCode() || [];
-   // res2 = await getAuthorShareCode('https://gitee.com/xr2021/share/raw/master/pk.json') || [];
+    res2 = await getAuthorShareCode('https://gitee.com/xr2021/share/raw/master/pk.json') || [];
   }
   if (pKHelpAuthorFlag) {
     $.innerPkInviteList = getRandomArrayElements([...$.innerPkInviteList, ...res, ...res2, ...res3], [...$.innerPkInviteList, ...res, ...res2, ...res3].length);
@@ -111,7 +111,7 @@ if ($.isNode()) {
     if (new Date().getHours() >= 1) {
       console.log(`\n******开始内部京东账号【怪兽大作战pk】助力*********\n`);
       for (let i = 0; i < $.pkInviteList.length && pKHelpFlag && $.canHelp; i++) {
-        console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`);
+        console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`); 
         $.pkInviteId = $.pkInviteList[i];
         console.log($.pkInviteList);
         await takePostRequest('pkHelp');
