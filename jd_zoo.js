@@ -26,8 +26,8 @@ cron "33 0,6-23/2 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/ma
 const $ = new Env('618动物联萌');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const pKHelpFlag = false;//是否PK助力  true 助力，false 不助力
-const pKHelpAuthorFlag = false;//是否助力作者PK  true 助力，false 不助力
+const pKHelpFlag = true;//是否PK助力  true 助力，false 不助力
+const pKHelpAuthorFlag = true;//是否助力作者PK  true 助力，false 不助力
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
@@ -89,7 +89,7 @@ if ($.isNode()) {
   let res = [], res2 = [], res3 = [];
   res3 = await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json');
   if (!res3) await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json')
-  if (new Date().getUTCHours() + 8 >= 9) {
+  if (new Date().getUTCHours() + 8 >= 22) {
     res = await getAuthorShareCode() || [];
     res2 = await getAuthorShareCode('https://gitee.com/xr2021/share/raw/master/pk.json') || [];
   }
@@ -108,19 +108,17 @@ if ($.isNode()) {
     $.index = i + 1;
     //console.log($.inviteList);
     //pk助力
-	
-    //if (new Date().getHours() >= 1) {
-     // console.log(`\n******开始内部京东账号【怪兽大作战pk】助力*********\n`);
-      //for (let i = 0; i < $.pkInviteList.length && pKHelpFlag && $.canHelp; i++) {
-      //  console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`);
-      //  $.pkInviteId = $.pkInviteList[i];
-       // console.log($.pkInviteList);
-        //await takePostRequest('pkHelp');
-        //await $.wait(2000);
-      //}
-    //  $.canHelp = true;
-    //}
-	
+    if (new Date().getHours() >= 14) {
+      console.log(`\n******开始内部京东账号【怪兽大作战pk】助力*********\n`);
+      for (let i = 0; i < $.pkInviteList.length && pKHelpFlag && $.canHelp; i++) {
+        console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`);
+        $.pkInviteId = $.pkInviteList[i];
+        console.log($.pkInviteList);
+        await takePostRequest('pkHelp');
+        await $.wait(2000);
+      }
+      $.canHelp = true;
+    }
     if ($.inviteList && $.inviteList.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList.length && $.canHelp; j++) {
       $.oneInviteInfo = $.inviteList[j];
@@ -457,12 +455,10 @@ async function takePostRequest(type) {
       body = `functionId=zoo_pk_doPkSkill&body={"skillType":"${$.skillCode}"}&client=wh5&clientVersion=1.0.0`;
       myRequest = await getPostRequest(`zoo_pk_doPkSkill`, body);
       break;
-	/*  
     case 'pkHelp':
       body = getPostBody(type);
       myRequest = await getPostRequest(`zoo_pk_assistGroup`, body);
       break;
-	*/
     case 'zoo_getSignHomeData':
       body = `functionId=zoo_getSignHomeData&body={"notCount":"1"}&client=wh5&clientVersion=1.0.0`;
       myRequest = await getPostRequest(`zoo_getSignHomeData`,body);
