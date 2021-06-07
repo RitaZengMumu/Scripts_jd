@@ -88,8 +88,8 @@ if ($.isNode()) {
   }
   let res = [], res2 = [], res3 = [];
   res3 = await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json');
-  if (!res3) await getAuthorShareCode('https://raw.githubusercontent.com/inoyna11/Write-files/master/shareCodes/jd_zoo.json')
-  if (new Date().getUTCHours() + 8 >= 22) {
+  if (!res3) await getAuthorShareCode('https://gitee.com/jay_chojfjfjf/share-codes/raw/master/jd_zoo.json')
+  if (new Date().getUTCHours() + 8 >= 9) {
     res = await getAuthorShareCode() || [];
     res2 = await getAuthorShareCode('https://gitee.com/xr2021/share/raw/master/pk.json') || [];
   }
@@ -108,7 +108,8 @@ if ($.isNode()) {
     $.index = i + 1;
     //console.log($.inviteList);
     //pk助力
-    if (new Date().getHours() >= 10) {
+	/*
+    if (new Date().getHours() >= 1) {
       console.log(`\n******开始内部京东账号【怪兽大作战pk】助力*********\n`);
       for (let i = 0; i < $.pkInviteList.length && pKHelpFlag && $.canHelp; i++) {
         console.log(`${$.UserName} 去助力PK码 ${$.pkInviteList[i]}`);
@@ -119,6 +120,7 @@ if ($.isNode()) {
       }
       $.canHelp = true;
     }
+	*/
     if ($.inviteList && $.inviteList.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList.length && $.canHelp; j++) {
       $.oneInviteInfo = $.inviteList[j];
@@ -207,7 +209,7 @@ async function zoo() {
             await $.wait(3000);
           }
         }
-      }else if ($.oneTask.taskType === 50 && $.oneTask.status === 1){
+      } else if ($.oneTask.taskType === 2 && $.oneTask.status === 1 && $.oneTask.scoreRuleVos[0].scoreRuleType === 2){
         console.log(`做任务：${$.oneTask.taskName};等待完成 (实际不会添加到购物车)`);
         $.taskId = $.oneTask.taskId;
         $.feedDetailInfo = {};
@@ -224,6 +226,25 @@ async function zoo() {
           await $.wait(1500);
           needTime --;
         }
+      }else if ($.oneTask.taskType === 2 && $.oneTask.status === 1 && $.oneTask.scoreRuleVos[0].scoreRuleType === 0){
+        $.activityInfoList = $.oneTask.productInfoVos ;
+        for (let j = 0; j < $.activityInfoList.length; j++) {
+          $.oneActivityInfo = $.activityInfoList[j];
+          if ($.oneActivityInfo.status !== 1 || !$.oneActivityInfo.taskToken) {
+            continue;
+          }
+          $.callbackInfo = {};
+          console.log(`做任务：浏览${$.oneActivityInfo.skuName};等待完成`);
+          await takePostRequest('zoo_collectScore');
+          if ($.oneTask.taskType === 2) {
+            await $.wait(2000);
+            console.log(`任务完成`);
+          } else {
+            console.log($.callbackInfo);
+            console.log(`任务失败`);
+            await $.wait(3000);
+          }
+        }
       }
     }
     await $.wait(1000);
@@ -235,7 +256,7 @@ async function zoo() {
       await takePostRequest('zoo_raise');
     }
     //===================================图鉴里的店铺====================================================================
-    if (new Date().getHours()>= 10 && new Date().getHours()<= 18 && !$.hotFlag) {//分享
+    if (new Date().getHours()>= 17 && new Date().getHours()<= 18 && !$.hotFlag) {//分享
       $.myMapList = [];
       await takePostRequest('zoo_myMap');
       for (let i = 0; i < $.myMapList.length; i++) {
@@ -247,7 +268,7 @@ async function zoo() {
         }
       }
     }
-    if (new Date().getHours() >= 11 && new Date().getHours() <= 17 && !$.hotFlag){//30个店铺，为了避免代码执行太久，下午2点到5点才做店铺任务
+    if (new Date().getHours() >= 14 && new Date().getHours() <= 17 && !$.hotFlag){//30个店铺，为了避免代码执行太久，下午2点到5点才做店铺任务
       console.log(`去做店铺任务`);
       $.shopInfoList = [];
       await takePostRequest('qryCompositeMaterials');
@@ -350,6 +371,7 @@ async function zoo() {
       }
     }
     //======================================================怪兽大作战=================================================================================
+	/*
     $.pkHomeData = {};
     await takePostRequest('zoo_pk_getHomeData');
     if (JSON.stringify($.pkHomeData) === '{}') {
@@ -395,6 +417,7 @@ async function zoo() {
     $.logErr(e)
   }
 }
+*/
 
 async function takePostRequest(type) {
   let body = ``;
